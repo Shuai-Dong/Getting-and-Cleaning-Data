@@ -43,8 +43,7 @@ allData_sub<-allData[grep(paste(toMatch,collapse = "|"),features[,2])]
 #
 allData$activity <- as.factor(allData$activity)
 allData$subject <- as.factor(allData$subject)    
-measurements<-names(allData[3:79])
 allDatamelt<-melt(allData, id=c("subject","activity"))
 allDatameltmean<-dcast(allDatamelt,subject + activity~variable,mean)
                            
-write.table(allDatameltmean,"allData_sub_mean.txt",row.names=TRUE,quote=FALSE)
+write.table(allDatameltmean,"allData_sub_mean.txt",row.names=FALSE,quote=FALSE)
