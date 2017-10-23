@@ -40,10 +40,11 @@ toMatch<-c("mean","std")
 #subset only the measurements on the mean and standard deviation for each measurement. 
 allData_sub<-allData[grep(paste(toMatch,collapse = "|"),features[,2])]
 
-#
+#getting the mean of each variable for each activity and each subject.
+library(reshape2)
 allData$activity <- as.factor(allData$activity)
 allData$subject <- as.factor(allData$subject)    
 allDatamelt<-melt(allData, id=c("subject","activity"))
 allDatameltmean<-dcast(allDatamelt,subject + activity~variable,mean)
                            
-write.table(allDatameltmean,"allData_sub_mean.txt",row.names=FALSE,quote=FALSE)
+write.table(allDatameltmean,"allDatasubmean.txt",row.names=FALSE)
